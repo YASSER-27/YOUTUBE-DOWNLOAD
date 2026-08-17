@@ -6,7 +6,10 @@ It extracts videos and audio through the **downr.org** API (falling back to **yt
 stores them in a local library (`~/.downfree`), and plays them back with a built-in
 floating player.
 
+[Download](https://github.com/YASSER-27/YOUTUBE-DOWNLOAD/releases/tag/1.0.0)
+
 ![Python](https://img.shields.io/badge/Python-3.11-blue) ![Qt](https://img.shields.io/badge/Qt-6.11-green)
+
 
 ## Features
 
