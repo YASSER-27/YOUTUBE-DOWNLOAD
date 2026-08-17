@@ -25,6 +25,10 @@ floating player.
 - Background downloading with live progress on each card.
 - Delete / open folder / open file context menus on every card.
 
+
+<img width="1800" height="1126" alt="down" src="https://github.com/user-attachments/assets/9364762e-989a-4e1d-8dcb-1772777c8c9b" />
+
+
 ## Requirements
 
 - Python 3.11+
