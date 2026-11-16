@@ -8,11 +8,11 @@ It delivers blazing-fast extraction and downloads across all modern streaming fo
 
 ## DownloadFree_Setup_v1.0.3
 
-[DFSetup](https://github.com/YASSER-27/YOUTUBE-DOWNLOAD/releases/download/1.0.2/DownloadFree_Setup_v1.0.1.exe)
+[DFSetup](https://github.com/YASSER-27/YOUTUBE-DOWNLOAD/releases/download/1.0.3/Download.Free.v1.0.3.zip)
 
 ## Di Dil Android Version
 
-[APK](https://github.com/YASSER-27/YOUTUBE-DOWNLOAD/releases/download/1.0.2/Di.Dil.apk)
+[APK](https://github.com/YASSER-27/YOUTUBE-DOWNLOAD/releases/download/1.0.3/DiDil.apk)
 
 ---
 
