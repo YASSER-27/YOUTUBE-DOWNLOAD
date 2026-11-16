@@ -1,4 +1,4 @@
-# Download Free v1.0.1
+# Download Free v1.0.3
 
 desktop Media & Video Downloader built with **PySide6 (Qt)** and a **Custom Embedded Engine** (No external `yt-dlp` tool or Python package required).
 
@@ -6,7 +6,7 @@ It delivers blazing-fast extraction and downloads across all modern streaming fo
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue) ![Qt](https://img.shields.io/badge/Qt-6.11-green) ![Engine](https://img.shields.io/badge/Custom_Engine-v2.0-brightgreen) ![License](https://img.shields.io/badge/License-Proprietary-orange)
 
-## DownloadFree_Setup_v1.0.1
+## DownloadFree_Setup_v1.0.3
 
 [DFSetup](https://github.com/YASSER-27/YOUTUBE-DOWNLOAD/releases/download/1.0.2/DownloadFree_Setup_v1.0.1.exe)
 
