@@ -1,36 +1,36 @@
 # -*- mode: python ; coding: utf-8 -*-
 import os
-from PyInstaller.utils.hooks import collect_data_files
+from PyInstaller.utils.hooks import collect_data_files, collect_submodules
 
-# Check if dist/engine.exe exists, and bundle it in datas
 extra_datas = [
     ('icon.ico', '.'),
 ]
 if os.path.exists('dist/engine.exe'):
     extra_datas.append(('dist/engine.exe', '.'))
-elif os.path.exists('engine.exe'):
+if os.path.exists('engine.exe') and ('engine.exe', '.') not in extra_datas:
     extra_datas.append(('engine.exe', '.'))
 
 a = Analysis(
     ['app.py'],
-    pathex=[],
+    pathex=['.'],
     binaries=[],
-    datas=collect_data_files('PySide6.QtGui', includes=['imageformats/**']) + extra_datas,
-    hiddenimports=[],
+    datas=collect_data_files('yt_dlp') + extra_datas,
+    hiddenimports=collect_submodules('yt_dlp') + [
+        'PyQt5', 'PyQt5.QtCore', 'PyQt5.QtGui', 'PyQt5.QtWidgets', 'PyQt5.QtSvg',
+        'static_ffmpeg', 'cffi', '_cffi_backend', 'urllib.request', 'json', 'ssl', 'websockets'
+    ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[
-        'PySide6.QtWebEngineWidgets', 'PySide6.QtWebEngineCore',
-        'PySide6.QtWebEngineQuick', 'PySide6.QtQml', 'PySide6.QtQuick',
-        'PySide6.QtQuickWidgets', 'PySide6.QtWebChannel',
-        'PySide6.QtCharts', 'PySide6.QtPdf', 'PySide6.QtPdfWidgets',
-        'PySide6.QtSvg', 'PySide6.QtSql', 'PySide6.QtTest', 'PySide6.QtXml',
-        'PySide6.Qt3DCore', 'PySide6.Qt3DRender', 'PySide6.Qt3DExtras',
-        'PySide6.QtNetworkAuth', 'PySide6.QtSensors', 'PySide6.QtBluetooth',
-        'PySide6.QtPositioning', 'PySide6.QtLocation', 'PySide6.QtDesigner',
-        'PySide6.QtMultimedia', 'PySide6.QtMultimediaWidgets',
-        'webview', 'clr_loader',
+        'PySide6', 'PySide2', 'PyQt6',
+        'PyQt5.QtWebEngineWidgets', 'PyQt5.QtWebEngineCore', 'PyQt5.QtWebEngine',
+        'PyQt5.QtQml', 'PyQt5.QtQuick', 'PyQt5.QtQuickWidgets',
+        'PyQt5.QtNetworkAuth', 'PyQt5.QtSensors', 'PyQt5.QtBluetooth',
+        'PyQt5.QtPositioning', 'PyQt5.QtLocation', 'PyQt5.QtDesigner',
+        'PyQt5.QtMultimedia', 'PyQt5.QtMultimediaWidgets',
+        'PyQt5.QtSql', 'PyQt5.QtTest', 'PyQt5.QtXml',
+        'webview', 'clr_loader', 'torch', 'transformers', 'scipy', 'matplotlib'
     ],
     noarchive=False,
     optimize=1,
@@ -38,16 +38,14 @@ a = Analysis(
 
 pyz = PYZ(a.pure)
 
-# Drop Qt DLLs we never use
+# Drop heavy Qt5 DLLs not used by our app
 _DROP = {
-    'opengl32sw.dll', 'Qt6Quick.dll', 'Qt6Qml.dll', 'Qt6QmlMeta.dll',
-    'Qt6QmlModels.dll', 'Qt6QmlWorkerScript.dll', 'Qt6QmlCompiler.dll',
-    'Qt6Pdf.dll', 'Qt6PdfWidgets.dll', 'Qt6Svg.dll', 'Qt6VirtualKeyboard.dll',
-    'Qt6Positioning.dll', 'Qt6WebChannel.dll', 'Qt6PrintSupport.dll',
-    'pyside6qml.abi3.dll', 'Qt6MultimediaQuick.dll', 'Qt6Multimedia.dll',
-    'Qt6MultimediaWidgets.dll', 'Qt6Network.dll', 'Qt6OpenGL.dll',
-    'Qt6OpenGLWidgets.dll', 'Qt6SvgWidgets.dll', 'Qt6QuickWidgets.dll',
-    'Qt6DBus.dll',
+    'opengl32sw.dll', 'Qt5Quick.dll', 'Qt5Qml.dll', 'Qt5QmlModels.dll',
+    'Qt5QmlWorkerScript.dll', 'Qt5Pdf.dll', 'Qt5PdfWidgets.dll',
+    'Qt5VirtualKeyboard.dll', 'Qt5Positioning.dll', 'Qt5WebChannel.dll',
+    'Qt5MultimediaQuick.dll', 'Qt5Multimedia.dll', 'Qt5MultimediaWidgets.dll',
+    'Qt5OpenGL.dll', 'Qt5OpenGLWidgets.dll', 'Qt5QuickWidgets.dll', 'Qt5DBus.dll',
+    'Qt5Sensors.dll', 'Qt5Location.dll', 'Qt5Bluetooth.dll', 'Qt5Nfc.dll',
 }
 a.binaries = [b for b in a.binaries if os.path.basename(b[0]) not in _DROP]
 a.datas = [d for d in a.datas if os.path.basename(d[0]) not in _DROP]
